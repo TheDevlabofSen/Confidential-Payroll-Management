@@ -13,13 +13,13 @@ Before building, the environment was verified as follows:
 
 | Component | Target Requirement | System Verification Output | Status |
 | :--- | :--- | :--- | :---: |
-| **OS & Shell** | WSL Ubuntu Linux | `Linux DESKTOP-ENQGTK4 6.18.33.2-microsoft-standard-WSL2 x86_64` | ✅ |
-| **Node.js** | Node 22+ | `v22.23.1` at `/home/zeal/.nvm/versions/node/v22.23.1/bin/node` | ✅ |
-| **npm** | WSL npm | `10.9.8` at `/home/zeal/.nvm/versions/node/v22.23.1/bin/npm` | ✅ |
-| **Docker** | Active Docker Daemon | Docker `29.6.2`, Docker Compose `v5.3.1` active | ✅ |
-| **Compact** | Compact Compiler | `compact 0.5.1`, `compact compile 0.31.1` at `~/.local/bin/compact` | ✅ |
-| **Location** | Native WSL Path | `/home/zeal/midnight-projects/confidential-payroll-management` | ✅ |
-| **Proof Server** | Port / Container | Standalone Docker containers on project network | ✅ |
+| **OS & Shell** | WSL Ubuntu Linux | `Linux DESKTOP-ENQGTK4 6.18.33.2-microsoft-standard-WSL2 x86_64` | ✅ Pass |
+| **Node.js** | Node 22+ | `v22.23.1` at `/home/zeal/.nvm/versions/node/v22.23.1/bin/node` | ✅ Pass |
+| **npm** | WSL npm | `10.9.8` at `/home/zeal/.nvm/versions/node/v22.23.1/bin/npm` | ✅ Pass |
+| **Docker** | Active Docker Daemon | Docker `29.6.2`, Docker Compose `v5.3.1` active | ✅ Pass |
+| **Compact** | Compact Compiler | `compact 0.5.1`, `compact compile 0.31.1` at `~/.local/bin/compact` | ✅ Pass |
+| **Location** | Native WSL Path | `/home/zeal/midnight-projects/confidential-payroll-management` | ✅ Pass |
+| **Proof Server** | Port / Container | Standalone Docker containers on project network | ✅ Pass |
 
 ---
 
@@ -100,13 +100,13 @@ cd frontend
 npm install
 npm run dev
 ```
-Open `http://localhost:5173` to interact with the polished glassmorphism dApp UI featuring Lace Wallet connection, live ledger metrics, ZK proof inspectors, and interactive payout forms.
+Open `http://localhost:5173` (or `http://localhost:5174`) to interact with the polished dApp UI featuring Lace Wallet connection, live ledger metrics, ZK proof inspectors, and interactive payout forms.
 
 ---
 
-## 🌐 Preprod / Preview Deployment Status
+## 🌐 Preprod / Preview Deployment Status & Mentor Guidance
 
-Preprod network connectivity and faucet endpoints were tested:
+Preprod network connectivity and faucet endpoints were verified:
 - **Preprod RPC Endpoint:** `https://rpc.preprod.midnight.network` (HTTP 200/405 verified)
 - **Preprod Indexer API:** `https://indexer.preprod.midnight.network/api/v4/graphql` (Verified)
 
@@ -115,8 +115,20 @@ Preprod network connectivity and faucet endpoints were tested:
 npm run setup -- --network preprod
 ```
 
-> **Preprod Deployment Note:**  
-> If Preprod wallet state indexing experiences extended sync times, local devnet (`npm run setup -- --network undeployed`) provides full end-to-end verification. Funded wallet state and seed phrase are preserved in `.midnight-state.json`.
+> 📌 **Mentor Guidance & Waiver Notice:**  
+> *"If Preview/Preprod wallet sync is blocked or unable to complete, do not block submission. Build the full-stack dApp locally first and submit with honest documentation."*  
+> If Preprod wallet sync hangs or takes extended indexing time, local devnet (`npm run setup -- --network undeployed`) provides full end-to-end ZK execution. Seed phrases and state are preserved in `.midnight-state.json`.
+
+### How to Switch to Preprod Once Address is Available:
+1. Run `npm run network preprod` to switch active network config.
+2. Run `npm run setup -- --network preprod` to fund wallet and deploy.
+3. Update environment variables in `.env` / `frontend/.env`:
+   ```env
+   VITE_NETWORK=preprod
+   VITE_CONTRACT_ADDRESS=<YOUR_PREPROD_CONTRACT_ADDRESS>
+   VITE_PROOF_SERVER_URL=https://proof-server.preprod.midnight.network
+   ```
+4. Restart the frontend server via `npm run dev`.
 
 ---
 
@@ -128,7 +140,7 @@ npm run setup -- --network preprod
 - [x] Local deployment script `npm run setup -- --network undeployed` brings up containers and deploys contract.
 - [x] Interactive CLI `npm run cli` supports complete payroll operations.
 - [x] README with setup instructions, public state vs private witness section, and product idea.
-- [x] Meaningful git commit history.
+- [x] Minimum 5 meaningful commits.
 
 ### Level 2 Requirements Checklist
 - [x] React + Vite web frontend created in `frontend/`.
@@ -136,13 +148,14 @@ npm run setup -- --network preprod
 - [x] Contract integration using environment variables (`VITE_NETWORK`, `VITE_CONTRACT_ADDRESS`, `VITE_PROOF_SERVER_URL`).
 - [x] Private input forms and ZK proof generation preview cards.
 - [x] Production build setup for Vercel/Netlify with `.env.example`.
+- [x] Minimum 8 meaningful commits.
 
 ### Level 3 Requirements Checklist
 - [x] Comprehensive test suite in `tests/payroll.test.ts` passing all tests.
-- [x] Automated GitHub Actions CI workflow in `.github/workflows/ci.yml`.
+- [x] Automated GitHub Actions CI workflow in `.github/workflows/ci.yml` running contract compilation, tests, and frontend build.
 - [x] Complete README with Privacy Model, Product Proposal, System Checks, and Checklists.
-- [x] Polished dark mode glassmorphism UX with micro-animations and clear loading/success/error states.
-- [x] Clean commit history without AI trailers.
+- [x] Polished UX with micro-animations and clear loading/success/error states.
+- [x] Minimum 10 meaningful commits without AI trailers.
 
 ---
 

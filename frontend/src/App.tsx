@@ -112,7 +112,7 @@ export function App() {
 
     try {
       if (!window.midnight?.lace) {
-        // Mock connection for local preview if Lace browser extension is absent
+        // Mock connection for preview if Lace browser extension is absent
         await new Promise((r) => setTimeout(r, 800));
         setWalletAddress('mn_addr_undeployed1q9x26zp7s8k3m4v9c1x82n3l4k5j6h7g8f9e0d');
         setWalletConnected(true);
@@ -246,9 +246,9 @@ export function App() {
               <ShieldCheck size={22} />
             </div>
             <div>
-              <span className="gradient-text">Confidential Payroll</span>
-              <span style={{ fontSize: '0.75rem', display: 'block', color: 'var(--text-muted)', fontWeight: 400 }}>
-                Midnight Network ZK dApp
+              <span className="gradient-text" style={{ fontSize: '1.3rem' }}>Confidential Payroll</span>
+              <span style={{ fontSize: '0.75rem', display: 'block', color: 'var(--text-muted)', fontWeight: 500 }}>
+                Midnight Network ZK Platform
               </span>
             </div>
           </div>
@@ -256,14 +256,14 @@ export function App() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
             <div className="status-pill">
               <span className="pulse-dot"></span>
-              <span style={{ textTransform: 'capitalize' }}>Network: {networkId}</span>
+              <span style={{ textTransform: 'capitalize', fontWeight: 600 }}>Network: {networkId}</span>
             </div>
 
             {walletConnected ? (
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                <div className="status-pill" style={{ borderColor: 'rgba(139, 92, 246, 0.4)', background: 'rgba(139, 92, 246, 0.1)' }}>
-                  <Wallet size={15} color="var(--primary)" />
-                  <span style={{ fontFamily: 'var(--font-mono)' }}>
+                <div className="status-pill" style={{ borderColor: '#c7d2fe', background: '#eef2ff', color: '#3730a3' }}>
+                  <Wallet size={15} color="#4f46e5" />
+                  <span style={{ fontFamily: 'var(--font-mono)', fontWeight: 600 }}>
                     {walletAddress.slice(0, 10)}...{walletAddress.slice(-6)}
                   </span>
                 </div>
@@ -291,19 +291,19 @@ export function App() {
       {/* Main Container */}
       <main className="container" style={{ flex: 1, paddingBottom: '3rem' }}>
         {/* Banner Hero */}
-        <section style={{ margin: '2rem 0 1.5rem 0', textAlign: 'center' }}>
-          <h1 style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>
-            Private Payroll & Revenue Splits Management
+        <section style={{ margin: '2.5rem 0 2rem 0', textAlign: 'center' }}>
+          <h1 style={{ fontSize: '2.5rem', marginBottom: '0.5rem', color: '#0f172a', fontWeight: 800 }}>
+            Enterprise Private Payroll & Revenue Splits
           </h1>
-          <p style={{ color: 'var(--text-muted)', maxWidth: '680px', margin: '0 auto', fontSize: '1.05rem' }}>
-            Execute zero-knowledge confidential compensation disbursements, bonuses, tax deductions, and profit splits with public ledger auditability on Midnight Network.
+          <p style={{ color: '#475569', maxWidth: '720px', margin: '0 auto', fontSize: '1.05rem', lineHeight: '1.6' }}>
+            Execute zero-knowledge confidential compensation disbursements, bonuses, tax withholdings, and partner splits with complete public ledger auditability on Midnight Network.
           </p>
         </section>
 
         {/* Public Ledger Live Statistics Grid */}
         <section className="stats-grid">
           <div className="glass-card stat-card">
-            <div className="stat-icon">
+            <div className="stat-icon" style={{ background: '#eef2ff', color: '#4f46e5', borderColor: '#c7d2fe' }}>
               <DollarSign size={24} />
             </div>
             <div>
@@ -313,7 +313,7 @@ export function App() {
           </div>
 
           <div className="glass-card stat-card">
-            <div className="stat-icon" style={{ background: 'rgba(59, 130, 246, 0.1)', color: '#3b82f6', borderColor: 'rgba(59, 130, 246, 0.2)' }}>
+            <div className="stat-icon" style={{ background: '#eff6ff', color: '#2563eb', borderColor: '#bfdbfe' }}>
               <FileCheck2 size={24} />
             </div>
             <div>
@@ -323,7 +323,7 @@ export function App() {
           </div>
 
           <div className="glass-card stat-card">
-            <div className="stat-icon" style={{ background: 'rgba(16, 185, 129, 0.1)', color: '#10b981', borderColor: 'rgba(16, 185, 129, 0.2)' }}>
+            <div className="stat-icon" style={{ background: '#ecfdf5', color: '#059669', borderColor: '#a7f3d0' }}>
               <Users size={24} />
             </div>
             <div>
@@ -333,7 +333,7 @@ export function App() {
           </div>
 
           <div className="glass-card stat-card">
-            <div className="stat-icon" style={{ background: 'rgba(6, 182, 212, 0.1)', color: '#06b6d4', borderColor: 'rgba(6, 182, 212, 0.2)' }}>
+            <div className="stat-icon" style={{ background: '#f0f9ff', color: '#0284c7', borderColor: '#bae6fd' }}>
               <ShieldCheck size={24} />
             </div>
             <div>
@@ -347,24 +347,24 @@ export function App() {
 
         {/* Global Feedback Banners */}
         {txSuccess && (
-          <div className="glass-card" style={{ borderColor: 'rgba(16, 185, 129, 0.4)', background: 'rgba(16, 185, 129, 0.1)', marginBottom: '1.5rem' }}>
+          <div className="glass-card" style={{ borderColor: '#a7f3d0', background: '#ecfdf5', marginBottom: '1.5rem' }}>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
-              <CheckCircle2 size={20} color="#10b981" style={{ flexShrink: 0, marginTop: '2px' }} />
+              <CheckCircle2 size={20} color="#059669" style={{ flexShrink: 0, marginTop: '2px' }} />
               <div>
-                <strong style={{ color: '#10b981' }}>Zero-Knowledge Transaction Success!</strong>
-                <p style={{ marginTop: '0.25rem', fontSize: '0.9rem' }}>{txSuccess}</p>
+                <strong style={{ color: '#047857' }}>Zero-Knowledge Transaction Confirmed!</strong>
+                <p style={{ marginTop: '0.25rem', fontSize: '0.9rem', color: '#065f46' }}>{txSuccess}</p>
               </div>
             </div>
           </div>
         )}
 
         {txError && (
-          <div className="glass-card" style={{ borderColor: 'rgba(244, 63, 94, 0.4)', background: 'rgba(244, 63, 94, 0.1)', marginBottom: '1.5rem' }}>
+          <div className="glass-card" style={{ borderColor: '#fecdd3', background: '#fff1f2', marginBottom: '1.5rem' }}>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
-              <AlertCircle size={20} color="#f43f5e" style={{ flexShrink: 0, marginTop: '2px' }} />
+              <AlertCircle size={20} color="#e11d48" style={{ flexShrink: 0, marginTop: '2px' }} />
               <div>
-                <strong style={{ color: '#f43f5e' }}>Execution Notice</strong>
-                <p style={{ marginTop: '0.25rem', fontSize: '0.9rem' }}>{txError}</p>
+                <strong style={{ color: '#be123c' }}>Execution Notice</strong>
+                <p style={{ marginTop: '0.25rem', fontSize: '0.9rem', color: '#9f1239' }}>{txError}</p>
               </div>
             </div>
           </div>
@@ -402,11 +402,11 @@ export function App() {
         {activeTab === 'payroll' && (
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
             <div className="glass-card">
-              <h2 style={{ fontSize: '1.25rem', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <Zap size={20} color="var(--primary)" /> Disburse Confidential Salary
+              <h2 style={{ fontSize: '1.25rem', marginBottom: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#0f172a' }}>
+                <Zap size={20} color="#4f46e5" /> Disburse Confidential Salary
               </h2>
-              <p style={{ color: 'var(--text-muted)', fontSize: '0.875rem', marginBottom: '1.5rem' }}>
-                The smart contract circuit will privately verify <code style={{ color: '#a78bfa' }}>NetSalary = Base + Bonus - Tax</code> using zero-knowledge proofs before updating public ledger totals.
+              <p style={{ color: '#64748b', fontSize: '0.875rem', marginBottom: '1.5rem' }}>
+                The smart contract circuit will privately verify <code style={{ color: '#4f46e5', background: '#eef2ff', padding: '0.1rem 0.4rem', borderRadius: '0.25rem', fontWeight: 600 }}>NetSalary = Base + Bonus - Tax</code> using zero-knowledge proofs before updating public ledger totals.
               </p>
 
               <form onSubmit={executeZKPayrollPayment}>
@@ -424,7 +424,7 @@ export function App() {
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '0.75rem' }}>
                   <div className="form-group">
                     <label className="form-label" style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
-                      <EyeOff size={12} color="#f43f5e" /> Base Salary (Private)
+                      <EyeOff size={13} color="#e11d48" /> Base Salary (Private)
                     </label>
                     <input
                       type="number"
@@ -437,7 +437,7 @@ export function App() {
 
                   <div className="form-group">
                     <label className="form-label" style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
-                      <EyeOff size={12} color="#f43f5e" /> Bonus (Private)
+                      <EyeOff size={13} color="#e11d48" /> Bonus (Private)
                     </label>
                     <input
                       type="number"
@@ -450,7 +450,7 @@ export function App() {
 
                   <div className="form-group">
                     <label className="form-label" style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
-                      <EyeOff size={12} color="#f43f5e" /> Tax (Private)
+                      <EyeOff size={13} color="#e11d48" /> Tax (Private)
                     </label>
                     <input
                       type="number"
@@ -483,8 +483,8 @@ export function App() {
 
             {/* ZK Proof Data Flow Card */}
             <div className="glass-card">
-              <h3 style={{ fontSize: '1.1rem', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <Eye size={18} color="var(--accent-cyan)" /> Zero-Knowledge Proof Inspection
+              <h3 style={{ fontSize: '1.1rem', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#0f172a' }}>
+                <Eye size={18} color="#0284c7" /> Zero-Knowledge Proof Inspection
               </h3>
               <div className="zk-preview-card">
                 <div className="zk-line">
@@ -501,7 +501,7 @@ export function App() {
                 </div>
                 <div className="zk-line">
                   <span>Proven Invariant Constraint:</span>
-                  <span style={{ color: '#a78bfa' }}>Base + Bonus - Tax == NetSalary</span>
+                  <span style={{ color: '#4f46e5', fontWeight: 600 }}>Base + Bonus - Tax == NetSalary</span>
                 </div>
                 <div className="zk-line">
                   <span>Public Disclosed Net Payout:</span>
@@ -513,8 +513,8 @@ export function App() {
                 </div>
               </div>
 
-              <div style={{ marginTop: '1.25rem', padding: '1rem', background: 'rgba(255,255,255,0.03)', borderRadius: '0.75rem', fontSize: '0.85rem', color: 'var(--text-muted)' }}>
-                <strong>Observer View:</strong> Block explorers and on-chain monitors see that a valid payroll payout took place and total disbursed increased by {calculatedNetSalary}, but cannot observe individual salary components.
+              <div style={{ marginTop: '1.25rem', padding: '1rem', background: '#f1f5f9', borderRadius: '0.75rem', fontSize: '0.85rem', color: '#475569', border: '1px solid #e2e8f0' }}>
+                <strong style={{ color: '#1e293b' }}>On-Chain Audit Guarantee:</strong> Block explorers verify that a valid payroll payout took place and total disbursed increased by {calculatedNetSalary}, but cannot observe individual salary components.
               </div>
             </div>
           </div>
@@ -524,11 +524,11 @@ export function App() {
         {activeTab === 'split' && (
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
             <div className="glass-card">
-              <h2 style={{ fontSize: '1.25rem', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <PieChart size={20} color="var(--accent-cyan)" /> Confidential Revenue Split
+              <h2 style={{ fontSize: '1.25rem', marginBottom: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#0f172a' }}>
+                <PieChart size={20} color="#0284c7" /> Confidential Revenue Split
               </h2>
-              <p style={{ color: 'var(--text-muted)', fontSize: '0.875rem', marginBottom: '1.5rem' }}>
-                Privately prove and execute partner percentage splits using <code style={{ color: '#06b6d4' }}>ExpectedSplit * 100 == Gross * SplitPercent</code> without publishing split ratios.
+              <p style={{ color: '#64748b', fontSize: '0.875rem', marginBottom: '1.5rem' }}>
+                Privately prove and execute partner percentage splits using <code style={{ color: '#0284c7', background: '#f0f9ff', padding: '0.1rem 0.4rem', borderRadius: '0.25rem', fontWeight: 600 }}>ExpectedSplit * 100 == Gross * SplitPercent</code> without publishing split ratios.
               </p>
 
               <form onSubmit={executeZKSplitPayout}>
@@ -557,7 +557,7 @@ export function App() {
 
                   <div className="form-group">
                     <label className="form-label" style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
-                      <EyeOff size={12} color="#f43f5e" /> Split Ratio % (Private)
+                      <EyeOff size={13} color="#e11d48" /> Split Ratio % (Private)
                     </label>
                     <input
                       type="number"
@@ -591,8 +591,8 @@ export function App() {
             </div>
 
             <div className="glass-card">
-              <h3 style={{ fontSize: '1.1rem', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <Lock size={18} color="var(--primary)" /> ZK Revenue Split Math Verification
+              <h3 style={{ fontSize: '1.1rem', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#0f172a' }}>
+                <Lock size={18} color="#4f46e5" /> ZK Revenue Split Math Verification
               </h3>
               <div className="zk-preview-card">
                 <div className="zk-line">
@@ -609,7 +609,7 @@ export function App() {
                 </div>
                 <div className="zk-line">
                   <span>ZK Multiplicative Invariant:</span>
-                  <span style={{ color: '#06b6d4' }}>{calculatedSplitAmount} × 100 == {grossAmount} × {splitPercent}</span>
+                  <span style={{ color: '#0284c7', fontWeight: 600 }}>{calculatedSplitAmount} × 100 == {grossAmount} × {splitPercent}</span>
                 </div>
               </div>
             </div>
@@ -619,11 +619,11 @@ export function App() {
         {/* Tab 3: Register Employee Record */}
         {activeTab === 'register' && (
           <div style={{ maxWidth: '600px', margin: '0 auto' }} className="glass-card">
-            <h2 style={{ fontSize: '1.25rem', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <Users size={20} color="var(--accent-emerald)" /> Register Confidential Employee
+            <h2 style={{ fontSize: '1.25rem', marginBottom: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#0f172a' }}>
+              <Users size={20} color="#059669" /> Register Confidential Employee
             </h2>
-            <p style={{ color: 'var(--text-muted)', fontSize: '0.875rem', marginBottom: '1.5rem' }}>
-              Create an encrypted commitment for a new employee on the Midnight blockchain.
+            <p style={{ color: '#64748b', fontSize: '0.875rem', marginBottom: '1.5rem' }}>
+              Create an encrypted identity commitment for a new employee on the Midnight blockchain.
             </p>
 
             <form onSubmit={executeZKRegisterEmployee}>
@@ -661,16 +661,16 @@ export function App() {
         {/* Tab 4: Privacy Model Audit */}
         {activeTab === 'privacy' && (
           <div className="glass-card">
-            <h2 style={{ fontSize: '1.3rem', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <ShieldCheck size={22} color="var(--primary)" /> Zero-Knowledge Privacy Model Specification
+            <h2 style={{ fontSize: '1.3rem', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#0f172a' }}>
+              <ShieldCheck size={22} color="#4f46e5" /> Zero-Knowledge Privacy Specification
             </h2>
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
-              <div style={{ background: 'rgba(244, 63, 94, 0.05)', border: '1px solid rgba(244, 63, 94, 0.2)', padding: '1.25rem', borderRadius: '0.75rem' }}>
-                <h3 style={{ color: '#f43f5e', fontSize: '1.1rem', marginBottom: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <div style={{ background: '#fff1f2', border: '1px solid #fecdd3', padding: '1.25rem', borderRadius: '0.75rem' }}>
+                <h3 style={{ color: '#be123c', fontSize: '1.1rem', marginBottom: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                   <EyeOff size={18} /> What Observers CANNOT Learn
                 </h3>
-                <ul style={{ listStyleType: 'disc', paddingLeft: '1.25rem', color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.7' }}>
+                <ul style={{ listStyleType: 'disc', paddingLeft: '1.25rem', color: '#475569', fontSize: '0.9rem', lineHeight: '1.7' }}>
                   <li>Individual base salary amounts of employees.</li>
                   <li>Discretionary bonus amounts or performance incentives.</li>
                   <li>Individual tax deduction rates or withholdings.</li>
@@ -679,16 +679,16 @@ export function App() {
                 </ul>
               </div>
 
-              <div style={{ background: 'rgba(16, 185, 129, 0.05)', border: '1px solid rgba(16, 185, 129, 0.2)', padding: '1.25rem', borderRadius: '0.75rem' }}>
-                <h3 style={{ color: '#10b981', fontSize: '1.1rem', marginBottom: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <div style={{ background: '#ecfdf5', border: '1px solid #a7f3d0', padding: '1.25rem', borderRadius: '0.75rem' }}>
+                <h3 style={{ color: '#047857', fontSize: '1.1rem', marginBottom: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                   <Eye size={18} /> What Observers CAN Verify (Public Ledger)
                 </h3>
-                <ul style={{ listStyleType: 'disc', paddingLeft: '1.25rem', color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.7' }}>
-                  <li>Total payroll volume disbursed by the company (<code style={{ color: '#10b981' }}>totalDisbursed</code>).</li>
-                  <li>Total count of executed payroll transactions (<code style={{ color: '#10b981' }}>payrollCount</code>).</li>
-                  <li>Count of registered employees on chain (<code style={{ color: '#10b981' }}>employeeCount</code>).</li>
-                  <li>Cryptographic proof hash of the latest payout (<code style={{ color: '#10b981' }}>lastDisbursedHash</code>).</li>
-                  <li>Mathematical validity of salary constraints (<code style={{ color: '#10b981' }}>NetSalary == Base + Bonus - Tax</code>).</li>
+                <ul style={{ listStyleType: 'disc', paddingLeft: '1.25rem', color: '#475569', fontSize: '0.9rem', lineHeight: '1.7' }}>
+                  <li>Total payroll volume disbursed by the company (<code style={{ color: '#047857', background: '#d1fae5', padding: '0.1rem 0.3rem', borderRadius: '0.2rem' }}>totalDisbursed</code>).</li>
+                  <li>Total count of executed payroll transactions (<code style={{ color: '#047857', background: '#d1fae5', padding: '0.1rem 0.3rem', borderRadius: '0.2rem' }}>payrollCount</code>).</li>
+                  <li>Count of registered employees on chain (<code style={{ color: '#047857', background: '#d1fae5', padding: '0.1rem 0.3rem', borderRadius: '0.2rem' }}>employeeCount</code>).</li>
+                  <li>Cryptographic proof hash of the latest payout (<code style={{ color: '#047857', background: '#d1fae5', padding: '0.1rem 0.3rem', borderRadius: '0.2rem' }}>lastDisbursedHash</code>).</li>
+                  <li>Mathematical validity of salary constraints (<code style={{ color: '#047857', background: '#d1fae5', padding: '0.1rem 0.3rem', borderRadius: '0.2rem' }}>NetSalary == Base + Bonus - Tax</code>).</li>
                 </ul>
               </div>
             </div>
@@ -697,9 +697,9 @@ export function App() {
       </main>
 
       {/* Footer */}
-      <footer style={{ borderTop: '1px solid var(--border-color)', padding: '1.5rem 0', textAlign: 'center', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
+      <footer style={{ borderTop: '1px solid var(--border-color)', padding: '1.5rem 0', textAlign: 'center', color: 'var(--text-muted)', fontSize: '0.85rem', background: '#ffffff' }}>
         <div className="container">
-          Confidential Payroll Management • Built for Midnight Network Hackathon Submission (Level 1, Level 2 & Level 3)
+          Confidential Payroll Management • Enterprise Zero-Knowledge Payroll Solution on Midnight Network
         </div>
       </footer>
     </div>

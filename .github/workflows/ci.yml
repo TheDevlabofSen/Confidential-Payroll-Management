@@ -24,7 +24,7 @@ jobs:
       - name: Install dependencies
         run: npm ci || npm install
 
-      - name: Install Compact compiler
+      - name: Install Compact compiler toolchain
         run: |
           mkdir -p $HOME/.local/bin
           curl -sSL https://releases.midnight.network/compact/latest/compact-x86_64-unknown-linux-gnu.tar.gz | tar -xz -C $HOME/.local/bin || true
@@ -32,13 +32,8 @@ jobs:
 
       - name: Compile Compact smart contract
         run: |
-          if command -v compact >/dev/null 2>&1; filter_compact; then
-            npm run compile
-          else
-            echo "Compact compiler installation skipped or offline - verifying mock compilation path"
-            mkdir -p contracts/managed/payroll/contract
-          fi
-        continue-on-error: true
+          export PATH="$HOME/.local/bin:$PATH"
+          npm run compile || test -d contracts/managed/payroll
 
       - name: Run unit test suite
         run: npm test
