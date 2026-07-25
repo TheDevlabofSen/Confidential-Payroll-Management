@@ -1,11 +1,13 @@
 # Dependencies
 node_modules/
+frontend/node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
 # Build output
 dist/
+frontend/dist/
 build/
 
 # Environment variables
@@ -20,8 +22,6 @@ contracts/managed/
 
 # Deployment info
 deployment.json
-
-# Wallet seed (sensitive)
 
 # OS generated files
 .DS_Store
