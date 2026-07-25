@@ -1,0 +1,60 @@
+pragma language_version >= 0.23;
+
+import CompactStandardLibrary;
+
+// Public ledger state - transparently stored on the Midnight blockchain
+export ledger adminPublicKey: Bytes<32>;
+export ledger totalDisbursed: Uint<64>;
+export ledger payrollCount: Uint<64>;
+export ledger employeeCount: Uint<64>;
+export ledger lastDisbursedHash: Bytes<32>;
+
+// Initialize or update payroll administrator key
+export circuit initializePayrollSystem(adminKey: Bytes<32>): [] {
+    adminPublicKey = disclose(adminKey);
+}
+
+// Register a new confidential employee record
+export circuit registerEmployee(employeeIdHash: Bytes<32>, initialCommitment: Bytes<32>): [] {
+    employeeCount = disclose((employeeCount + 1) as Uint<64>);
+    lastDisbursedHash = disclose(initialCommitment);
+}
+
+// Process a zero-knowledge confidential payroll payment
+// The circuit privately verifies that (baseSalary + bonus - taxDeduction == expectedNetSalary)
+// and updates the public ledger totals without exposing baseSalary, bonus, or taxDeduction publicly.
+export circuit processPayrollPayment(
+    employeeIdHash: Bytes<32>,
+    baseSalary: Uint<64>,
+    bonus: Uint<64>,
+    taxDeduction: Uint<64>,
+    expectedNetSalary: Uint<64>,
+    payoutCommitment: Bytes<32>
+): [] {
+    const gross = (baseSalary + bonus) as Uint<64>;
+    assert(gross >= taxDeduction, "Tax deduction exceeds gross salary");
+    const calculatedNetSalary = (gross - taxDeduction) as Uint<64>;
+    assert(calculatedNetSalary == expectedNetSalary, "Calculated net salary does not match expected amount");
+
+    totalDisbursed = disclose((totalDisbursed + calculatedNetSalary) as Uint<64>);
+    payrollCount = disclose((payrollCount + 1) as Uint<64>);
+    lastDisbursedHash = disclose(payoutCommitment);
+}
+
+// Process a zero-knowledge confidential revenue split payout
+// The circuit privately verifies that (expectedSplitAmount * 100 == grossAmount * splitPercentNumerator)
+// and updates ledger totals without exposing split percentage logic to observers.
+export circuit processSplitPayout(
+    employeeIdHash: Bytes<32>,
+    grossAmount: Uint<64>,
+    splitPercentNumerator: Uint<64>,
+    expectedSplitAmount: Uint<64>
+): [] {
+    assert(splitPercentNumerator <= 100, "Split percentage numerator cannot exceed 100%");
+    const lhs = (expectedSplitAmount * 100) as Uint<64>;
+    const rhs = (grossAmount * splitPercentNumerator) as Uint<64>;
+    assert(lhs == rhs, "Calculated split amount does not match expected value");
+
+    totalDisbursed = disclose((totalDisbursed + expectedSplitAmount) as Uint<64>);
+    payrollCount = disclose((payrollCount + 1) as Uint<64>);
+}
