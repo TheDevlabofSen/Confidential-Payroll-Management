@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "compile": "compact compile contracts/payroll.compact contracts/managed/payroll",
-    "build": "npx tsc --noEmit || true",
+    "build": "cd frontend && npm install && npm run build",
     "setup": "npx tsx src/setup.ts",
     "deploy": "npx tsx src/deploy.ts",
     "cli": "npx tsx src/cli.ts",
