@@ -23,7 +23,7 @@
 ## 🚀 Live Demo, Video & Repository
 
 - 🌐 **Live Web Application:** [https://confidential-payroll-management-ten.vercel.app/](https://confidential-payroll-management-ten.vercel.app/)
-- 🎥 **YouTube Demo Video:** [INSERT YOUTUBE VIDEO URL]
+- 🎥 **YouTube Demo Video:** [(https://youtu.be/phdZJBMUl5I)](https://youtu.be/phdZJBMUl5I)
 - 🐙 **GitHub Repository:** [https://github.com/TheDevlabofSen/Confidential-Payroll-Management](https://github.com/TheDevlabofSen/Confidential-Payroll-Management)
 - ⚙️ **CI/CD Workflow:** [`.github/workflows/ci.yml`](./.github/workflows/ci.yml)
 
