@@ -1,22 +1,24 @@
-export interface LaceWallet {
+﻿// Midnight Lace Wallet Type Definitions
+// Provider uses connect("preprod"), NOT enable()
+
+export interface MidnightProvider {
   name: string;
-  apiVersion: string;
-  icon: string;
-  enable: () => Promise<LaceWalletApi>;
-  isEnabled: () => Promise<boolean>;
+  rdns?: string;
+  apiVersion?: string;
+  icon?: string;
+  connect: (network: string) => Promise<MidnightWalletApi>;
+  isEnabled?: () => Promise<boolean>;
 }
 
-export interface LaceWalletApi {
-  getUnshieldedAddress: () => Promise<string>;
-  getShieldedAddress: () => Promise<string>;
-  getNetworkId: () => Promise<string>;
-  submitTx: (tx: any) => Promise<string>;
+export interface MidnightWalletApi {
+  getUnshieldedAddress: () => Promise<string | { unshieldedAddress?: string; address?: string }>;
+  getShieldedAddress?: () => Promise<string>;
+  getNetworkId?: () => Promise<string>;
+  submitTx?: (tx: unknown) => Promise<string>;
 }
 
 declare global {
   interface Window {
-    midnight?: {
-      lace?: LaceWallet;
-    };
+    midnight?: Record<string, MidnightProvider>;
   }
 }

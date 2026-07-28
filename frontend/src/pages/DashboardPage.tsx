@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Link } from 'react-router-dom';
 import { usePayroll } from '../context/PayrollContext';
 import {
@@ -16,11 +16,13 @@ import {
   Clock,
   Zap,
   Lock,
-  FileText
+  FileText,
+  AlertCircle,
+  WifiOff,
 } from 'lucide-react';
 
 export const DashboardPage: React.FC = () => {
-  const { ledgerState, networkId, contractAddress, auditLogs, credentials } = usePayroll();
+  const { ledgerState, networkId, contractAddress, auditLogs, credentials, walletConnected, walletStatus, walletAddress } = usePayroll();
   const [copiedHash, setCopiedHash] = React.useState<string | null>(null);
 
   const handleCopy = (text: string) => {
@@ -145,11 +147,33 @@ export const DashboardPage: React.FC = () => {
             <div className="status-item">
               <div className="status-info">
                 <span className="status-label">Lace Wallet Bridge</span>
-                <span className="status-sub">dApp Browser Connector</span>
+                <span className="status-sub">
+                  {walletStatus === 'connected' && walletAddress
+                    ? walletAddress.slice(0, 10) + '...' + walletAddress.slice(-6)
+                    : 'dApp Browser Connector'}
+                </span>
               </div>
-              <span className="status-badge status-online">
-                <span className="pulse-dot"></span> Connected
-              </span>
+              {walletStatus === 'connected' ? (
+                <span className="status-badge status-online">
+                  <span className="pulse-dot"></span> Connected
+                </span>
+              ) : walletStatus === 'not_found' ? (
+                <span className="status-badge" style={{ background: 'rgba(239,68,68,0.08)', color: '#b91c1c', borderColor: '#fca5a5' }}>
+                  <WifiOff size={11} /> Not Found
+                </span>
+              ) : walletStatus === 'failed' ? (
+                <span className="status-badge" style={{ background: 'rgba(239,68,68,0.08)', color: '#b91c1c', borderColor: '#fca5a5' }}>
+                  <AlertCircle size={11} /> Failed
+                </span>
+              ) : walletStatus === 'connecting' ? (
+                <span className="status-badge" style={{ background: 'rgba(245,158,11,0.08)', color: '#92400e', borderColor: '#fcd34d' }}>
+                  Connecting...
+                </span>
+              ) : (
+                <span className="status-badge" style={{ background: 'rgba(100,116,139,0.08)', color: '#475569', borderColor: '#cbd5e1' }}>
+                  Not Connected
+                </span>
+              )}
             </div>
           </div>
 
@@ -232,7 +256,7 @@ export const DashboardPage: React.FC = () => {
             <Clock size={20} color="#9333ea" /> Recent Zero-Knowledge Activity Timeline
           </h2>
           <Link to="/history" className="btn-link" style={{ fontSize: '0.875rem' }}>
-            View Full Audit History →
+            View Full Audit History â†’
           </Link>
         </div>
 
